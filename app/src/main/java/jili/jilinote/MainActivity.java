@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -31,15 +32,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import jili.jilinote.adapter.ApplicationAdapter;
+import jili.jilinote.adapter.NoteAdapter;
 import jili.jilinote.entity.AppInfo;
+import jili.jilinote.entity.NoteInfo;
 import jili.jilinote.itemanimator.CustomItemAnimator;
+import jili.jilinote.itemanimator.ReboundItemAnimator;
 import jili.jilinote.util.UploadHelper;
 
 public class MainActivity extends ActionBarActivity {
     private List<AppInfo> applicationList = new ArrayList<AppInfo>();
 
-    private ApplicationAdapter mAdapter;
+//    private ApplicationAdapter mAdapter;
+    private NoteAdapter mAdapter;
     private ImageButton mFabButton;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -113,10 +117,17 @@ public class MainActivity extends ActionBarActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new CustomItemAnimator());
-        //mRecyclerView.setItemAnimator(new ReboundItemAnimator());
+        mRecyclerView.setItemAnimator(new ReboundItemAnimator());
 
-        mAdapter = new ApplicationAdapter(new ArrayList<AppInfo>(), R.layout.row_application, MainActivity.this);
+//        mAdapter = new ApplicationAdapter(new ArrayList<AppInfo>(), R.layout.row_application, MainActivity.this);
+        ArrayList<NoteInfo> noteInfos = new ArrayList<NoteInfo>();
+
+
+        mAdapter = new NoteAdapter(noteInfos, R.layout.row_application, MainActivity.this);
+
         mRecyclerView.setAdapter(mAdapter);
+
+        Log.v("cacacaca",mAdapter.getItemCount()+"");
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.theme_accent));
@@ -157,7 +168,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void animateActivity(AppInfo appInfo, View appIcon) {
-        Intent i = new Intent(this, DetailActivity.class);
+        Intent i = new Intent(this, AppDetailActivity.class);
         i.putExtra("appInfo", appInfo.getComponentName());
 
         ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create((View) mFabButton, "fab"), Pair.create(appIcon, "appIcon"));
@@ -200,9 +211,16 @@ public class MainActivity extends ActionBarActivity {
             //handle visibility
             mRecyclerView.setVisibility(View.VISIBLE);
             mProgressBar.setVisibility(View.GONE);
+            ArrayList<NoteInfo> noteInfos = new ArrayList<NoteInfo>();
+            for(int i =0;i<5;i++){
+                NoteInfo n = new NoteInfo();
+                n.setName("Note "+i);
+                noteInfos.add(n);
+            }
 
             //set data for list
-            mAdapter.addApplications(applicationList);
+//            mAdapter.addApplications(applicationList);
+            mAdapter.addApplications(noteInfos);
             mSwipeRefreshLayout.setRefreshing(false);
 
             super.onPostExecute(result);
