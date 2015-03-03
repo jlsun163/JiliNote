@@ -159,7 +159,7 @@ public class NoteMainActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String url = (String) view.getTag();
-                DetailActivity.launch(NoteMainActivity.this, view.findViewById(R.id.image), url);
+                DetailActivity.launch(NoteMainActivity.this, mFabButton,view.findViewById(R.id.image), url);
             }
         });
 
@@ -185,13 +185,13 @@ public class NoteMainActivity extends BaseActivity {
     };
 
 
-    public void animateActivity(AppInfo appInfo, View appIcon) {
-        Intent i = new Intent(this, AppDetailActivity.class);
-        i.putExtra("appInfo", appInfo.getComponentName());
-
-        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create((View) mFabButton, "fab"), Pair.create(appIcon, "appIcon"));
-        startActivity(i, transitionActivityOptions.toBundle());
-    }
+//    public void animateActivity(AppInfo appInfo, View appIcon) {
+//        Intent i = new Intent(this, AppDetailActivity.class);
+//        i.putExtra("appInfo", appInfo.getComponentName());
+//
+//        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create((View) mFabButton, "fab"), Pair.create(appIcon, "appIcon"));
+//        startActivity(i, transitionActivityOptions.toBundle());
+//    }
 
 
     private static class GridViewAdapter extends BaseAdapter {

@@ -17,15 +17,20 @@
 package jili.jilinote;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.FontAwesome;
 import com.squareup.picasso.Picasso;
 
 
@@ -36,9 +41,19 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DetailActivity.this.onBackPressed();
+            }
+        });
 
         ImageView image = (ImageView) findViewById(R.id.image);
-        ViewCompat.setTransitionName(image, EXTRA_IMAGE);
+        ImageButton fabButton = (ImageButton) findViewById(R.id.fab_button);
+        fabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
+//        fabButton.setOnClickListener(fabClickListener);
+        Utils.configureFab(fabButton);
+//        ViewCompat.setTransitionName(image, EXTRA_IMAGE);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(image);
     }
 
@@ -52,6 +67,13 @@ public class DetailActivity extends BaseActivity {
         ActivityOptionsCompat options =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(
                         activity, transitionView, EXTRA_IMAGE);
+        Intent intent = new Intent(activity, DetailActivity.class);
+        intent.putExtra(EXTRA_IMAGE, url);
+        ActivityCompat.startActivity(activity, intent, options.toBundle());
+    }
+    public static void launch(BaseActivity activity, View mFabButton,View image, String url) {
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, Pair.create((View) mFabButton, "fab"), Pair.create(image, EXTRA_IMAGE));
         Intent intent = new Intent(activity, DetailActivity.class);
         intent.putExtra(EXTRA_IMAGE, url);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
