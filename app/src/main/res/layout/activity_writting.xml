@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+
+    android:background="#faafafaf">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:paddingTop="@dimen/tool_bar_top_padding"
+        android:elevation="4dp"
+        android:transitionName="actionBar"/>
+    <!-- 设置 -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#faefefef"
+        android:padding="5dip"
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/colorsettingtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff000000"
+            android:textSize="18sp"
+            android:text="@string/colorsetting"/>
+        <!--  颜色选择 -->
+        <RadioGroup
+            android:layout_below="@id/colorsettingtitle"
+            android:id="@+id/colorgroupid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dip">
+            <!-- 黑色 -->
+            <RadioButton
+                android:id="@+id/blackbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/black"
+                android:textColor="#ff000000"
+                android:textSize="20sp"
+                android:layout_marginRight="5dip"
+                />
+            <!-- 红色 -->
+            <RadioButton
+                android:id="@+id/redbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/red"
+                android:textColor="#ffff0000"
+                android:textSize="20sp"
+                android:layout_marginRight="5dip"
+                />
+            <!-- 绿色 -->
+            <RadioButton
+                android:id="@+id/greenbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/green"
+                android:textColor="#ff00ff00"
+                android:textSize="20sp"
+                android:layout_marginRight="5dip"
+                />
+            <!-- 蓝色 -->
+            <RadioButton
+                android:id="@+id/bluebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blue"
+                android:textColor="#ff0000ff"
+                android:textSize="20sp"
+                android:layout_marginRight="5dip"
+                />
+        </RadioGroup>
+        <!-- 分隔线 -->
+        <View
+            android:id="@+id/divideid"
+            android:layout_toRightOf="@id/colorgroupid"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_alignBottom="@id/colorgroupid"
+            android:background="#ffafafaf"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"/>
+        <!--  标题 -->
+        <TextView
+            android:id="@+id/timesettingtitle"
+            android:layout_toRightOf="@id/divideid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff000000"
+            android:textSize="18sp"
+            android:text="@string/pensize"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dip"/>
+        <!-- 滑动条 -->
+        <SeekBar
+            android:id="@+id/pensize"
+            android:layout_below="@id/timesettingtitle"
+            android:layout_toRightOf="@id/divideid"
+            android:layout_width="180dip"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:progress="5"
+            android:paddingLeft="5dip"
+            android:paddingRight="15dip"
+            android:layout_marginLeft="10dip"
+            />
+        <!-- 清除按钮 -->
+        <Button
+            android:id="@+id/clearbutton"
+            android:layout_marginTop="10dip"
+            android:layout_toRightOf="@id/pensize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            android:textColor="#ff000000"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            />
+
+        <!-- 分隔线 -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#ffafafaf"
+            android:layout_below="@id/divideid"
+            android:layout_marginBottom="5dip"/>
+    </RelativeLayout>
+    <!-- 画板 -->
+    <jili.jilinote.view.WrittingView
+        android:id="@+id/writting"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:background="#faefefef"
+        android:layout_below="@+id/relativeLayout">
+    </jili.jilinote.view.WrittingView>
+</RelativeLayout>
+

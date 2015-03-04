@@ -51,7 +51,7 @@ public class DetailActivity extends BaseActivity {
         ImageView image = (ImageView) findViewById(R.id.image);
         ImageButton fabButton = (ImageButton) findViewById(R.id.fab_button);
         fabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
-//        fabButton.setOnClickListener(fabClickListener);
+        fabButton.setOnClickListener(fabClickListener);
         Utils.configureFab(fabButton);
 //        ViewCompat.setTransitionName(image, EXTRA_IMAGE);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(image);
@@ -62,6 +62,12 @@ public class DetailActivity extends BaseActivity {
     }
 
 
+    View.OnClickListener fabClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(new Intent(DetailActivity.this,WrittingActivity.class));
+        }
+    };
 
     public static void launch(BaseActivity activity, View transitionView, String url) {
         ActivityOptionsCompat options =

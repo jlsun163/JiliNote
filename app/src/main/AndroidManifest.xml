@@ -13,11 +13,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".AppDetailActivity"
@@ -33,12 +35,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jili.jilinote.DetailActivity"
+            android:name=".DetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="jili.jilinote.NoteMainActivity">
+            android:parentActivityName=".NoteMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NoteMainActivity"/>
+                android:value=".NoteMainActivity" />
+        </activity>
+        <activity
+            android:name=".WrittingActivity"
+            android:label="@string/title_activity_writting"
+            android:screenOrientation="landscape"
+             >
+
         </activity>
     </application>
 

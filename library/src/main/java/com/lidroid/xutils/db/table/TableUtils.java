@@ -51,7 +51,7 @@ public class TableUtils {
     /**
      * key: entityType.name
      */
-    private static ConcurrentHashMap<String, HashMap<String, Column>> entityColumnsMap = new ConcurrentHashMap<String, HashMap<String, Column>>();
+    private static ConcurrentHashMap<String, HashMap<String, Column>> entityColumnsMap = new ConcurrentHashMap<>();
 
     /* package */
     static synchronized HashMap<String, Column> getColumnMap(Class<?> entityType) {
@@ -115,7 +115,7 @@ public class TableUtils {
     /**
      * key: entityType.name
      */
-    private static ConcurrentHashMap<String, Id> entityIdMap = new ConcurrentHashMap<String, Id>();
+    private static ConcurrentHashMap<String, com.lidroid.xutils.db.table.Id> entityIdMap = new ConcurrentHashMap<>();
 
     /* package */
     static synchronized com.lidroid.xutils.db.table.Id getId(Class<?> entityType) {

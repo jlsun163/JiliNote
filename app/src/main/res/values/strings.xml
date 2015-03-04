@@ -20,4 +20,17 @@
     <string name="title_activity_main_activity2">MainActivity2</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_writting">Writting</string>
+
+
+
+
+    <string name="black">黑色</string>
+    <string name="red">红色</string>
+    <string name="green">绿色</string>
+    <string name="blue">蓝色</string>
+    <string name="colorsetting">颜色设置</string>
+    <string name="pensize">笔大小</string>
+
+    <string name="clear">擦除</string>
 </resources>
