@@ -45,7 +45,8 @@
         <activity
             android:name=".WrittingActivity"
             android:label="@string/title_activity_writting"
-            android:screenOrientation="landscape"
+            android:parentActivityName=".DetailActivity"
+
              >
 
         </activity>

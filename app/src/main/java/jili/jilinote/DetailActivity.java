@@ -37,7 +37,7 @@ import com.squareup.picasso.Picasso;
 public class DetailActivity extends BaseActivity {
 
     public static final String EXTRA_IMAGE = "DetailActivity:image";
-
+    ImageButton fabButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class DetailActivity extends BaseActivity {
         });
 
         ImageView image = (ImageView) findViewById(R.id.image);
-        ImageButton fabButton = (ImageButton) findViewById(R.id.fab_button);
+        fabButton = (ImageButton) findViewById(R.id.fab_button);
         fabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
         fabButton.setOnClickListener(fabClickListener);
         Utils.configureFab(fabButton);
@@ -65,7 +65,8 @@ public class DetailActivity extends BaseActivity {
     View.OnClickListener fabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(DetailActivity.this,WrittingActivity.class));
+//            startActivity(new Intent(DetailActivity.this,WrittingActivity.class));
+            WrittingActivity.launch(DetailActivity.this,fabButton);
         }
     };
 
